@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
       :tag => s.version.to_s
   }
   s.platform     = :ios, '6.1'
-  s.source_files = 'MBFlipView/.*'
+  s.source_files = 'MBFlipView/MBFlipView/.*'
   s.frameworks = 'UIKit'
   s.requires_arc = true
 end
