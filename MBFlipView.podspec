@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
         :git => 'https://github.com/NinoScript/MBFlipView',
       :tag => s.version.to_s
   }
-  s.platform     = :ios, '7.0'
+  s.platform     = :ios, '6.1'
   s.source_files = 'MBFlipView.*'
   s.frameworks = 'UIKit'
   s.requires_arc = true
