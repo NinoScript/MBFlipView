@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="mNV-bd-tLH">
     <dependencies>
+        <deployment defaultVersion="1552" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
@@ -66,8 +67,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="ugc-Ro-4jr" kind="custom" identifier="secondaryView" customClass="MBInstantiateSegue" id="iMu-ku-T6k"/>
-                        <segue destination="bBA-VF-kU8" kind="custom" identifier="primaryView" customClass="MBInstantiateSegue" id="pzD-Uy-uhP"/>
+                        <segue destination="ugc-Ro-4jr" kind="custom" identifier="secondary" customClass="MBInstantiateSegue" id="iMu-ku-T6k"/>
+                        <segue destination="bBA-VF-kU8" kind="custom" identifier="primary" customClass="MBInstantiateSegue" id="pzD-Uy-uhP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sfe-n8-GTC" userLabel="First Responder" sceneMemberID="firstResponder"/>

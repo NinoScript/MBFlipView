@@ -20,11 +20,11 @@
     if (self) {
         self.viewsAndTransitions = @[
             @{
-                @"view" : @"primaryView",
+                @"view" : @"primary",
                 @"transition" : @(UIViewAnimationOptionTransitionFlipFromLeft)
             },
             @{
-                @"view" : @"secondaryView",
+                @"view" : @"secondary",
                 @"transition" : @(UIViewAnimationOptionTransitionFlipFromRight)
             }
         ];
@@ -33,35 +33,44 @@
     return self;
 }
 
-- (void)setPrimaryView:(UIView*)primaryView
+- (void)setPrimary:(UIViewController*)viewController
 {
-    _primaryView = primaryView;
-    CGRect frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-    [self.primaryView setFrame:frame];
-    [self addSubview:self.primaryView];
+    _primary = viewController;
+    [self setViewController:_primary];
 }
 
-- (void)setSecondaryView:(UIView*)secondaryView
+- (void)setSecondary:(UIViewController*)viewController
 {
-    _secondaryView = secondaryView;
+    _secondary = viewController;
+    [self setViewController:_secondary];
+    [self sendSubviewToBack:viewController.view];
+}
+
+- (void)setViewController:(UIViewController*)viewController
+{
     CGRect frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-    [self.secondaryView setFrame:frame];
-    [self addSubview:self.secondaryView];
-    [self sendSubviewToBack:self.secondaryView];
+    [viewController.view setFrame:frame];
+    [self addSubview:viewController.view];
 }
 
 - (void)flipWithCompletion:(void (^)(BOOL))completion
 {
-    UIView* from = [self valueForKey:self.viewsAndTransitions[0][@"view"]];
-    UIView* next = [self valueForKey:self.viewsAndTransitions[1][@"view"]];
+    UIViewController* from = [self valueForKey:self.viewsAndTransitions[0][@"view"]];
+    UIViewController* next = [self valueForKey:self.viewsAndTransitions[1][@"view"]];
     NSUInteger transitionOptions = [self.viewsAndTransitions[0][@"transition"] integerValue];
-    [UIView transitionFromView:from
-                        toView:next
+
+    [from viewWillDisappear:YES];
+    [next viewWillAppear:YES];
+
+    [UIView transitionFromView:from.view
+                        toView:next.view
                       duration:self.spinTime
                        options:transitionOptions
                     completion:^(BOOL finished)
     {
         if (finished) {
+            [from viewDidDisappear:YES];
+            [next viewDidAppear:YES];
             self.viewsAndTransitions = [[self.viewsAndTransitions reverseObjectEnumerator] allObjects];
         }
         if (completion)

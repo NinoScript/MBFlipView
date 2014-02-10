@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'MBFlipView'
-  s.version      = '1.0.1'
+  s.version      = '1.1.0'
   s.license      = 'MIT'
   s.summary      = 'Storyboard-friendly flip view.'
   s.homepage     = 'https://github.com/NinoScript/MBFlipView'

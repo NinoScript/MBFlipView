@@ -10,8 +10,8 @@
 
 @interface MBFlipView : UIView
 
-@property(nonatomic, retain) UIView* primaryView;
-@property(nonatomic, retain) UIView* secondaryView;
+@property(nonatomic, retain) UIViewController* primary;
+@property(nonatomic, retain) UIViewController* secondary;
 @property float spinTime;
 
 - (void)flipWithCompletion:(void (^)(BOOL))completion;

@@ -21,13 +21,14 @@
 + (NSArray*)segues
 {
     return @[
-        @"primaryView",
-        @"secondaryView"
+        @"primary",
+        @"secondary"
     ];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewDidLoad
 {
+    [super viewDidLoad];
     self.instantiatedSegues = [NSMutableDictionary dictionary];
 
     self.coinView = [[MBFlipView alloc] initWithFrame:self.view.frame];
@@ -37,11 +38,25 @@
         [self performSegueWithIdentifier:segue
                                   sender:self];
         UIViewController* vc = self.instantiatedSegues[segue];
-        [self.coinView setValue:vc.view
+        [self.coinView setValue:vc
                          forKey:segue];
     }
 
     [self.view addSubview:self.coinView];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+}
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    self.coinView.frame = self.view.frame;
+    for (NSString* segue in [MBFlipViewController segues]) {
+        UIViewController* vc = self.instantiatedSegues[segue];
+        vc.view.frame = self.view.frame;
+    }
 }
 
 @end
