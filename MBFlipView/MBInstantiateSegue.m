@@ -20,6 +20,7 @@
     }
     [store.instantiatedSegues setObject:self.destinationViewController
                                  forKey:self.identifier];
+    [self.sourceViewController addChildViewController:self.destinationViewController];
 }
 
 @end
